@@ -424,3 +424,66 @@ ol {
     max-width: 90%;
   }
 }
+#players {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+#players li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.4rem 0.5rem;
+  width: 48%; /* توزيع المساحة مناصفة بين اللاعبين */
+  box-sizing: border-box;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.player-name, 
+.player input {
+  font-size: 0.8rem;
+  max-width: 3.5rem; /* تحديد حجم الاسم لمنع طرد زر التعديل */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.player-symbol {
+  font-size: 0.85rem;
+  margin: 0 0.2rem;
+}
+
+#players button {
+  padding: 0.25rem 0.4rem;
+  font-size: 0.7rem;
+  flex-shrink: 0; /* منع انكماش زر Edit */
+}
+
+/* للشاشات الضيقة جداً: رص اللاعبين رأسياً */
+@media (max-width: 380px) {
+  #players {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  #players li {
+    width: 100%;
+  }
+
+  .player-name, 
+  .player input {
+    max-width: none;
+  }
+}
