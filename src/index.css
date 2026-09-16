@@ -7,9 +7,7 @@
 html {
   font-family: 'Roboto Slab', sans-serif;
   line-height: 1.5;
-
   color: #ebe7ef;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +24,9 @@ body {
     url('bg-pattern-dark.png');
   background-repeat: repeat;
   background-size: 100% 100%, 30% 30%, 100% 100%;
-  min-height: 110rem;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem 0;
 }
 
 header {
@@ -36,20 +36,20 @@ header {
 header img {
   width: 8rem;
   object-fit: contain;
-  margin: 3rem auto 1rem auto;
+  margin: 2rem auto 1rem auto;
   filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
 }
 
 h1 {
   font-family: 'Caprasimo', cursive;
   font-size: 3rem;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 2rem auto;
   color: #3f3b00;
 }
 
 #game-container {
   max-width: 45rem;
-  margin: 3rem auto;
+  margin: 2rem auto;
   padding: 2rem;
   border-radius: 6px;
   background: linear-gradient(#383624, #282617);
@@ -57,21 +57,30 @@ h1 {
   position: relative;
 }
 
+/* ==========================================
+   Players Section (Vertical Layout)
+   ========================================== */
+
 #players {
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 1rem 0 2rem 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
 }
 
 #players li {
   display: flex;
   align-items: center;
-  width: 50%;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  width: 100%;
   border: 2px solid transparent;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 #players.highlight-player li.active {
@@ -84,43 +93,22 @@ h1 {
   color: #f6e35a;
 }
 
-#players button {
-  width: 3rem;
-  border: none;
-  background: none;
-  color: #c3ba78;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: color 0.2s;
-  padding: 0.5rem 0.25rem 0.25rem 0.25rem;
-  text-align: center;
-}
-
-#players button:hover {
-  color: #f8ca31;
-}
-
 .player {
-  border: 2px solid transparent;
   display: flex;
-  gap: 10px;
   align-items: center;
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-weight: bold;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .player-name {
   display: inline-block;
-  width: 10rem;
   font-size: 1rem;
   color: #e1dec7;
   text-transform: uppercase;
   margin: 0;
-  padding: 0.5rem;
+  padding: 0.4rem 0.6rem;
   border-radius: 4px;
-  text-overflow: ellipsis;
-  text-align: center;
+  font-weight: bold;
 }
 
 .player input {
@@ -128,17 +116,35 @@ h1 {
   font-size: 1rem;
   width: 10rem;
   border: none;
-  padding: 0.5rem;
+  padding: 0.4rem;
   animation: pulse-text 2s infinite;
   background-color: #46432f;
   text-align: center;
   text-transform: uppercase;
+  color: #e1dec7;
+  border-radius: 4px;
 }
 
 .player-symbol {
-  margin-left: 1rem;
   font-size: 1rem;
   color: #e1dec7;
+  font-weight: bold;
+}
+
+#players button {
+  border: none;
+  background: none;
+  color: #c3ba78;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.3rem 0.6rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+#players button:hover {
+  color: #f8ca31;
 }
 
 ol {
@@ -162,12 +168,16 @@ ol {
   animation: pulse-text-size 2s infinite ease-out;
 }
 
+/* ==========================================
+   Game Board
+   ========================================== */
+
 #game-board {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  margin: 3rem 0;
+  margin: 2rem 0;
   padding: 0;
   flex-direction: column;
 }
@@ -191,7 +201,12 @@ ol {
   cursor: pointer;
   font-family: 'Caprasimo', cursive;
   padding: 1rem;
+  border-radius: 4px;
 }
+
+/* ==========================================
+   Game Over Modal
+   ========================================== */
 
 #game-over {
   position: absolute;
@@ -205,6 +220,7 @@ ol {
   align-items: center;
   background-color: rgba(40, 38, 23, 0.95);
   animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
+  border-radius: 6px;
 }
 
 #game-over h2 {
@@ -241,6 +257,10 @@ ol {
   transform: scale(1.1);
   box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
 }
+
+/* ==========================================
+   Log & Hints
+   ========================================== */
 
 #log {
   max-width: 20rem;
@@ -287,6 +307,10 @@ ol {
   font: inherit;
   margin-top: 1.5rem;
 }
+
+/* ==========================================
+   Keyframe Animations
+   ========================================== */
 
 @keyframes slide-in-from-left {
   0% {
@@ -338,7 +362,6 @@ ol {
   }
 }
 
-/* Fancy animation for showing the "Game Over" element */
 @keyframes pop-in {
   0% {
     transform: scale(0);
@@ -354,10 +377,9 @@ ol {
 }
 
 /* ==========================================
-   Responsive Design / Media Queries for Mobile
+   Responsive Media Queries
    ========================================== */
 
-/* للشاشات المتوسطة والموبايل (أقل من 768px) */
 @media (max-width: 768px) {
   header img {
     width: 5rem;
@@ -374,22 +396,13 @@ ol {
     padding: 1.5rem 1rem;
   }
 
-  #players {
-    margin: 1rem 0;
-    gap: 0.8rem;
-  }
-
-  #players li {
-    padding: 0.4rem 0.6rem;
-  }
-
-  .player-name, .player-symbol {
-    font-size: 0.9rem;
-  }
-
   #game-board {
     gap: 1rem;
     margin: 1.5rem 0;
+  }
+
+  #game-board ol {
+    gap: 1rem;
   }
 
   #game-board button {
@@ -399,17 +412,24 @@ ol {
   }
 }
 
-/* للشاشات الصغيرة جداً (أقل من 480px) */
 @media (max-width: 480px) {
   #game-container {
     padding: 1rem 0.5rem;
   }
 
-  #game-board {
+  .player input {
+    width: 6.5rem;
+    font-size: 0.85rem;
+  }
+
+  .player-name {
+    font-size: 0.85rem;
+  }
+
+  #game-board ol {
     gap: 0.6rem;
   }
 
-  /* تصغير مربع اللعب ليتناسب مع عرض شاشة الموبايل بدون سكرول */
   #game-board button {
     width: 4rem;
     height: 4rem;
@@ -417,73 +437,14 @@ ol {
   }
 
   #game-over h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  #game-over p {
+    font-size: 1.2rem;
   }
 
   #log {
     max-width: 90%;
-  }
-}
-#players {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-#players li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.4rem;
-  padding: 0.4rem 0.5rem;
-  width: 48%; /* توزيع المساحة مناصفة بين اللاعبين */
-  box-sizing: border-box;
-}
-
-.player {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  min-width: 0;
-}
-
-.player-name, 
-.player input {
-  font-size: 0.8rem;
-  max-width: 3.5rem; /* تحديد حجم الاسم لمنع طرد زر التعديل */
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.player-symbol {
-  font-size: 0.85rem;
-  margin: 0 0.2rem;
-}
-
-#players button {
-  padding: 0.25rem 0.4rem;
-  font-size: 0.7rem;
-  flex-shrink: 0; /* منع انكماش زر Edit */
-}
-
-/* للشاشات الضيقة جداً: رص اللاعبين رأسياً */
-@media (max-width: 380px) {
-  #players {
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  #players li {
-    width: 100%;
-  }
-
-  .player-name, 
-  .player input {
-    max-width: none;
   }
 }
