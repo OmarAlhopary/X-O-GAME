@@ -58,7 +58,7 @@ h1 {
 }
 
 /* ==========================================
-   Players Section (Vertical Layout)
+   Players Section (Horizontal for Desktop/Tablet)
    ========================================== */
 
 #players {
@@ -66,8 +66,10 @@ h1 {
   padding: 0;
   margin: 1rem 0 2rem 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  flex-direction: row; /* أفقي للشاشات الكبيرة */
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
   width: 100%;
 }
 
@@ -77,10 +79,11 @@ h1 {
   justify-content: space-between;
   gap: 0.5rem;
   padding: 0.5rem 0.8rem;
-  width: 100%;
+  width: 48%; /* أخذ نصف المساحة لكل لاعب على اللابتوب */
   border: 2px solid transparent;
   border-radius: 6px;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 #players.highlight-player li.active {
@@ -109,12 +112,15 @@ h1 {
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
   font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .player input {
   font: inherit;
-  font-size: 1rem;
-  width: 10rem;
+  font-size: 0.9rem;
+  width: 8rem;
   border: none;
   padding: 0.4rem;
   animation: pulse-text 2s infinite;
@@ -377,7 +383,7 @@ ol {
 }
 
 /* ==========================================
-   Responsive Media Queries
+   Responsive Media Queries (Mobile & Small Screens)
    ========================================== */
 
 @media (max-width: 768px) {
@@ -394,6 +400,16 @@ ol {
     max-width: 92%;
     margin: 1.5rem auto;
     padding: 1.5rem 1rem;
+  }
+
+  /* تحويل أزرار اللاعبين إلى رأسية فقط على الموبايل والتابلت الصغير */
+  #players {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  #players li {
+    width: 100%; /* أخذ العرض الكامل لمنع التداخل */
   }
 
   #game-board {
