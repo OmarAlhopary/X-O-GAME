@@ -352,3 +352,75 @@ ol {
     transform: scale(1);
   }
 }
+
+/* ==========================================
+   Responsive Design / Media Queries for Mobile
+   ========================================== */
+
+/* للشاشات المتوسطة والموبايل (أقل من 768px) */
+@media (max-width: 768px) {
+  header img {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  #game-container {
+    max-width: 92%;
+    margin: 1.5rem auto;
+    padding: 1.5rem 1rem;
+  }
+
+  #players {
+    margin: 1rem 0;
+    gap: 0.8rem;
+  }
+
+  #players li {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .player-name, .player-symbol {
+    font-size: 0.9rem;
+  }
+
+  #game-board {
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  #game-board button {
+    width: 5rem;
+    height: 5rem;
+    font-size: 2.2rem;
+  }
+}
+
+/* للشاشات الصغيرة جداً (أقل من 480px) */
+@media (max-width: 480px) {
+  #game-container {
+    padding: 1rem 0.5rem;
+  }
+
+  #game-board {
+    gap: 0.6rem;
+  }
+
+  /* تصغير مربع اللعب ليتناسب مع عرض شاشة الموبايل بدون سكرول */
+  #game-board button {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.8rem;
+  }
+
+  #game-over h2 {
+    font-size: 2rem;
+  }
+
+  #log {
+    max-width: 90%;
+  }
+}
